@@ -72,7 +72,7 @@
 
 <!-- HEADER END -->
 
-<div id="content-wrap">
+<div id="content-wrap" >
 
     <!-- HERO AREA -->
     <div class="jumbotron" id="hero" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="0">
@@ -114,12 +114,12 @@
                 </div>
                 <div id="aboutRight" class="col-lg-6 col-12">
                     <div>
-                        <h4><p th:text="'Hello, ' + ${name} + '!'" /></h4>
 
-                        <h2>ABOUT ME</h2>
+
+                        <h2 th:text = "${listEntry.get(0).title}">ABOUT ME</h2>
                     </div>
                     <div>
-                        <p>
+                        <p th:text = "${listEntry.get(0).text}">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices, nulla et
                             egestas venenatis, urna ante tincidunt erat, vitae lacinia ante urna dignissim purus. Class
                             aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam
@@ -127,13 +127,14 @@
                             convallis bibendum. Fusce sed leo quis purus luctus tempus. Ut ornare mattis justo.
                         </p>
 
-                        <p>
-                            Pellentesque lectus libero, lobortis sed quam in, congue elementum tellus. Vestibulum dui
-                            enim, aliquet in tellus id, luctus tristique velit. Mauris augue sapien, condimentum sed
-                            ligula sit amet, facilisis aliquet nulla. Donec sed congue tellus, quis efficitur nisl.
-                            Maecenas at sapien orci. Donec dapibus pellentesque orci, nec egestas sapien ultricies eu.
-                            Morbi eu sem commodo, pellentesque massa quis.
-                        </p>
+
+                        <div class="row">
+                            <div th:each = "listImages : ${images}">
+                                <p ><span th:text = "${listImages.id}"></span><span th:text = "${listImages.name}"></span><img
+                                        th:src="@{files/{id}(id=${listImages.id})}"  alt=""></p>
+                            </div>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,55 +201,20 @@
                 <h2>My Experience</h2>
             </div>
         </div>
-        <div class="container">
-            <div class="timeline-block timeline-block-right">
+        <div class="container" >
+            <div th:each="entry,rowStat : ${listEntry}" th:class="'timeline-block timeline-block-'+(${rowStat.odd}  ? 'right' : 'left' ) ">
                 <div class="marker"></div>
                 <div class="timeline-content">
                     <h3>Web Designer</h3>
-                    <span>2015 - 2018</span>
+                    <span th:text="${entry.title}">2015 - 2018</span>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    <p th:text="${entry.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
                         voluptate.</p>
                 </div>
             </div>
-            <div class="timeline-block timeline-block-left">
-                <div class="marker"></div>
-                <div class="timeline-content">
-                    <h3>Web Developer</h3>
-                    <span>2010 - 2015</span>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate.</p>
-                </div>
-            </div>
-            <div class="timeline-block timeline-block-right">
-                <div class="marker"></div>
-                <div class="timeline-content">
-                    <h3>Programmer</h3>
-                    <span>2002 - 2010</span>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate.</p>
-                </div>
-            </div>
-            <div class="timeline-block timeline-block-left">
-                <div class="marker"></div>
-                <div class="timeline-content">
-                    <h3>Graphics Designer</h3>
-                    <span>2000 - 2002</span>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate.</p>
-                </div>
-            </div>
         </div>
     </section>
     <!-- EXPERIENCE END -->
@@ -483,34 +449,6 @@
 
 <div id="footer-wrap">
 
-    <!-- CONTACT INFO  -->
-    <!-- <div id="contact2">
-        <div class="container">
-            <div class="row withMap">
-                <div class="col-12 col-md-8">
-                    <div id="googleMap"></div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div>
-                        <i class="fa fa-map-marker"> </i>223 John Adam Street, London, UK.
-                    </div>
-                    <div>
-                        <i class="fa fa-phone"> </i>800 123-456-789
-                    </div>
-                    <div>
-                        <i class="fa fa-envelope"> </i>your@email.com
-                    </div>
-                    <div class="mapinfo">
-                        <p>Donec quis tincidunt nisl. Mauris ac urna libero. Aliquam cursus, augue eu efficitur dignissim,
-                            risus mauris porta diam, in bibendum lectus enim vitae risus. Maecenas sit amet pretium quam, in
-                            tristique ante. Sed consequat rutrum metus.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- CONTACT INFO END -->
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -551,7 +489,7 @@
 <script th:src="@{js/particles.min.js}"></script>
 <script th:src="@{js/config.js}"></script>
 <script th:src="@{js/custom.js}"></script>
-<!--<script th:src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMYUCUdT1WkZJFkrpI4IzEObG8_YNcZPg&amp;callback=myMap"></script>-->
+
 
 </body>
 

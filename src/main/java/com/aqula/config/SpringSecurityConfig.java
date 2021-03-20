@@ -1,6 +1,7 @@
 package com.aqula.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +10,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +24,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+    @Qualifier("userDetailsServiceImp")
+    @Autowired
+    UserDetailsService userDetailsService;
 
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
     // роль admin всегда есть доступ к /admin/**
     // роль user всегда есть доступ к /user/**
     // Наш кастомный "403 access denied" обработчик
@@ -33,28 +48,23 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
-                .antMatchers("/", "/index", "/about").permitAll()
+                .antMatchers("/", "/index", "/403", "/contact", "/forget", "/register").permitAll()
 //                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/admin")
+                .successHandler(myAuthenticationSuccessHandler())
+                // указываем action с формы логина
+                .loginProcessingUrl("/login")
+                .usernameParameter("j_userEmail")
+                .passwordParameter("j_password")
                 .permitAll();
 //                .and()
 //                .logout()
 //                .permitAll();
 
     }
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("pas")
-                .authorities("ROLE_ADMIN")
-                .and()
-                .withUser("user")
-                .password("pas").authorities("ROLE_USER");
-    }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {

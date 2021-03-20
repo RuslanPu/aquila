@@ -21,6 +21,7 @@
     <link rel="stylesheet" th:href="@{css_admin/style.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.5.5/css/simple-line-icons.min.css">
     <!-- endinject -->
+
     <link rel="shortcut icon" th:href="@{images/favicon.png}">
 </head>
 <body class="sidebar-dark">
@@ -28,8 +29,15 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="https://www.bootstrapdash.com/demo/libertyui/template/images/logo.svg" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="https://www.bootstrapdash.com/demo/libertyui/template/images/logo-mini.svg" alt="logo"/></a>
+
+            <a class="navbar-brand brand-logo" href="index.html">
+<!--                <img src="https://www.bootstrapdash.com/demo/libertyui/template/images/logo.svg" alt="logo"/>-->
+                <h4 style="color: white; padding-top: 15px">Aquiala Clanga</h4>
+            </a>
+            <a class="navbar-brand brand-logo-mini" href="index.html">
+<!--                <img src="https://www.bootstrapdash.com/demo/libertyui/template/images/logo-mini.svg" alt="logo"/>-->
+                <h4 style="color: white; padding-top: 15px">Aquiala Clanga</h4>
+            </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -38,22 +46,21 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown d-none d-lg-flex">
                     <a class="nav-link dropdown-toggle nav-btn" id="actionDropdown" href="#" data-toggle="dropdown">
-                        <span class="btn">+ Create new</span>
+                        <span class="btn" id="afterAdd">+ Create new</span>
                     </a>
                     <div class="dropdown-menu navbar-dropdown dropdown-left" aria-labelledby="actionDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
                             <i class="icon-user text-primary"></i>
-                            User Account
+                            Manager Account
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <i class="icon-user-following text-warning"></i>
-                            Admin User
-                        </a>
-
                     </div>
                 </li>
             </ul>
+
+
+
+
+
             <ul class="navbar-nav navbar-nav-right">
                 <!-- <li class="nav-item dropdown d-none d-lg-flex">
                   <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
@@ -381,27 +388,27 @@
             <ul class="nav">
                 <li class="nav-item nav-profile">
                     <div class="nav-link">
-                        <div class="profile-image">
-                            <img src="images/faces/admin.jpg" alt="image"/>
-                            <span class="online-status online"></span> <!--change class online to offline or busy as needed-->
-                        </div>
+<!--                        <div class="profile-image">-->
+<!--                            <img src="images/faces/admin.jpg" alt="image"/>-->
+<!--                            <span class="online-status online"></span> &lt;!&ndash;change class online to offline or busy as needed&ndash;&gt;-->
+<!--                        </div>-->
                         <div class="profile-name">
-                            <p class="name">
-                                Ruslan Punin
+                            <p class="name" th:text="${user.name}">
+
                             </p>
-                            <p class="designation">
+                            <p class="designation" >
                                 Super Admin
                             </p>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">
-                        <i class="icon-menu menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                        <span class="badge badge-success">New</span>
-                    </a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="index.html">-->
+<!--                        <i class="icon-menu menu-icon"></i>-->
+<!--                        <span class="menu-title">Dashboard</span>-->
+<!--                        <span class="badge badge-success">New</span>-->
+<!--                    </a>-->
+<!--                </li>-->
 
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false" aria-controls="editors">
@@ -416,52 +423,52 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="icon-user menu-icon"></i>
-                        <span class="menu-title">User Pages</span>
-                    </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-                        <i class="icon-support menu-icon"></i>
-                        <span class="menu-title">Error pages</span>
-                    </a>
-                    <div class="collapse" id="error">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                        <i class="icon-user menu-icon"></i>
-                        <span class="menu-title">General Pages</span>
-                    </a>
-                    <div class="collapse" id="general-pages">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/landing-page.html"> Landing Page </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/profile.html"> Profile </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/faq.html"> FAQ </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/faq-2.html"> FAQ 2 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/news-grid.html"> News grid </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/timeline.html"> Timeline </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/search-results.html"> Search Results </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/portfolio.html"> Portfolio </a></li>
-                        </ul>
-                    </div>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">-->
+<!--                        <i class="icon-user menu-icon"></i>-->
+<!--                        <span class="menu-title">User Pages</span>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="auth">-->
+<!--                        <ul class="nav flex-column sub-menu">-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">-->
+<!--                        <i class="icon-support menu-icon"></i>-->
+<!--                        <span class="menu-title">Error pages</span>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="error">-->
+<!--                        <ul class="nav flex-column sub-menu">-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">-->
+<!--                        <i class="icon-user menu-icon"></i>-->
+<!--                        <span class="menu-title">General Pages</span>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="general-pages">-->
+<!--                        <ul class="nav flex-column sub-menu">-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/landing-page.html"> Landing Page </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/profile.html"> Profile </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/faq.html"> FAQ </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/faq-2.html"> FAQ 2 </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/news-grid.html"> News grid </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/timeline.html"> Timeline </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/search-results.html"> Search Results </a></li>-->
+<!--                            <li class="nav-item"> <a class="nav-link" href="pages/samples/portfolio.html"> Portfolio </a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
 
 
 
@@ -477,249 +484,148 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-12 grid-margin">
-                        <div class="card card-statistics">
-                            <div class="row">
-                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                                            <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                                            <div class="wrapper text-center text-sm-left">
-                                                <p class="card-text mb-0">New Users</p>
-                                                <div class="fluid-container">
-                                                    <h3 class="card-title mb-0">65,650</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                                            <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                                            <div class="wrapper text-center text-sm-left">
-                                                <p class="card-text mb-0">New Feedbacks</p>
-                                                <div class="fluid-container">
-                                                    <h3 class="card-title mb-0">32,604</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                                            <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>
-                                            <div class="wrapper text-center text-sm-left">
-                                                <p class="card-text mb-0">Employees</p>
-                                                <div class="fluid-container">
-                                                    <h3 class="card-title mb-0">17,583</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">
-                                            <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>
-                                            <div class="wrapper text-center text-sm-left">
-                                                <p class="card-text mb-0">Total Sales</p>
-                                                <div class="fluid-container">
-                                                    <h3 class="card-title mb-0">61,119</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 grid-margin">
-                        <div class="card">
-                            <div class="table-responsive">
-                                <table class="table center-aligned-table">
-                                    <thead>
-                                    <tr class="bg-light">
-                                        <th class="border-bottom-0">ID</th>
-                                        <th class="border-bottom-0">Assignee</th>
-                                        <th class="border-bottom-0">Task Details</th>
-                                        <th class="border-bottom-0">Payment Method</th>
-                                        <th class="border-bottom-0">Payment Status</th>
-                                        <th class="border-bottom-0">Amount</th>
-                                        <th class="border-bottom-0">Tracking Number</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#320</td>
-                                        <td>Mark C.Diaz</td>
-                                        <td>Support of thteme</td>
-                                        <td>Credit card</td>
-                                        <td><label class="badge badge-success">Approved</label></td>
-                                        <td>$12,245</td>
-                                        <td>JPBBN435893458</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#321</td>
-                                        <td>Jose D</td>
-                                        <td>Verify your email address !</td>
-                                        <td>Internet banking</td>
-                                        <td><label class="badge badge-warning">Pending</label></td>
-                                        <td>$12,245</td>
-                                        <td>BDYBN435893325</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#322</td>
-                                        <td>Philips T</td>
-                                        <td>Item support message send</td>
-                                        <td>Credit card</td>
-                                        <td><label class="badge badge-success">Approved</label></td>
-                                        <td>$12,245</td>
-                                        <td>JSNTN435884258</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#323</td>
-                                        <td>Luke Pixel</td>
-                                        <td>New submission on website</td>
-                                        <td>Cash on delivery</td>
-                                        <td><label class="badge badge-danger">Rejected</label></td>
-                                        <td>$12,245</td>
-                                        <td>JPABT435893678</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<!--                <div class="row">-->
+<!--                    <div class="col-12 grid-margin">-->
+<!--                        <div class="card card-statistics">-->
+<!--                            <div class="row">-->
+<!--                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">-->
+<!--                                            <i class="mdi mdi-account-multiple-outline text-primary mr-0 mr-sm-4 icon-lg"></i>-->
+<!--                                            <div class="wrapper text-center text-sm-left">-->
+<!--                                                <p class="card-text mb-0">New Users</p>-->
+<!--                                                <div class="fluid-container">-->
+<!--                                                    <h3 class="card-title mb-0">65,650</h3>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">-->
+<!--                                            <i class="mdi mdi-checkbox-marked-circle-outline text-primary mr-0 mr-sm-4 icon-lg"></i>-->
+<!--                                            <div class="wrapper text-center text-sm-left">-->
+<!--                                                <p class="card-text mb-0">New Feedbacks</p>-->
+<!--                                                <div class="fluid-container">-->
+<!--                                                    <h3 class="card-title mb-0">32,604</h3>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">-->
+<!--                                            <i class="mdi mdi-trophy-outline text-primary mr-0 mr-sm-4 icon-lg"></i>-->
+<!--                                            <div class="wrapper text-center text-sm-left">-->
+<!--                                                <p class="card-text mb-0">Employees</p>-->
+<!--                                                <div class="fluid-container">-->
+<!--                                                    <h3 class="card-title mb-0">17,583</h3>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-col col-xl-3 col-lg-3 col-md-3 col-6">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <div class="d-flex align-items-center justify-content-center flex-column flex-sm-row">-->
+<!--                                            <i class="mdi mdi-target text-primary mr-0 mr-sm-4 icon-lg"></i>-->
+<!--                                            <div class="wrapper text-center text-sm-left">-->
+<!--                                                <p class="card-text mb-0">Total Sales</p>-->
+<!--                                                <div class="fluid-container">-->
+<!--                                                    <h3 class="card-title mb-0">61,119</h3>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <div class="row">
-                    <div class="col-12 grid-margin">
+                    <div class="col-12">
+                    <div class="border bg-white">
+                        <div class="border-bottom pl-3 p-2 bg-light font-weight-bolder">All user</div>
+                        <div class="p-3 table-responsive">
+                            <table class="table table-striped" id="myTable">
+                                <thead>
+                                <tr class="font-weight-bolder">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user : ${userList}">
+                                    <th scope="row" th:text="${user.id}"></th>
+                                    <td th:text="${user.name}"></td>
+                                    <td th:text="${user.lastName}"></td>
+                                    <td th:text="${user.age}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td>
+                                                <span th:each="role : ${user.roles}" th:text="${role.name}"
+                                                      class="pr-1"></span>
+                                    </td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button"  class="buttonEdit btn btn-info" data-toggle="modal" data-target="#exampleModalEdit" th:data="${user.id}">
+                                            Edit
+                                        </button>
+
+
+
+                                    </td>
+                                    <td class="deleteRow">
+                                        <!--                                            <a th:href="@{/admin/delete/{id}(id = ${user.id})}">Delete</a>-->
+
+                                        <button type="button" class="buttonDelete btn btn-danger" data-toggle="modal" data-target="#exampleModal1" th:data="${user.id}">
+                                            Delete
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Change main page</h3>
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title mb-4">Manage Tickets</h5>
-                                <div class="fluid-container">
-                                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                                        <div class="col-md-1">
-                                            <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face1.jpg" alt="profile image">
-                                        </div>
-                                        <div class="ticket-details col-md-9">
-                                            <div class="d-flex">
-                                                <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">James :</p>
-                                                <p class="font-weight-medium mr-1 mb-0">[#23047]</p>
-                                                <p class="font-weight-semibold mb-0 ellipsis">Donec rutrum congue leo eget malesuada.</p>
-                                            </div>
-                                            <p class="text-small text-gray mb-2">Donec rutrum congue leo eget malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim vivamus.</p>
-                                            <div class="row text-gray d-md-flex d-none">
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted text-muted">Last responded :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted text-muted">3 hours ago</p>
-                                                </div>
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted text-muted">Due in :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted text-muted">2 Days</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-actions col-md-2">
-                                            <div class="btn-group dropdown">
-                                                <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Manage
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
-                                        <div class="col-md-1">
-                                            <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face2.jpg" alt="profile image">
-                                        </div>
-                                        <div class="ticket-details col-md-9">
-                                            <div class="d-flex">
-                                                <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">Stella :</p>
-                                                <p class="font-weight-medium mr-1 mb-0">[#23135]</p>
-                                                <p class="font-weight-semibold mb-0 ellipsis">Curabitur aliquet quam id dui posuere blandit.</p>
-                                            </div>
-                                            <p class="text-small text-gray mb-2">Pellentesque in ipsum id orci porta dapibus. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl.</p>
-                                            <div class="row text-gray d-md-flex d-none">
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted">Last responded :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted">3 hours ago</p>
-                                                </div>
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted">Due in :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted">2 Days</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-actions col-md-2">
-                                            <div class="btn-group dropdown">
-                                                <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Manage
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row ticket-card mt-3">
-                                        <div class="col-md-1">
-                                            <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face3.jpg" alt="profile image">
-                                        </div>
-                                        <div class="ticket-details col-md-9">
-                                            <div class="d-flex">
-                                                <p class="text-dark font-weight-bold mr-2 mb-0 no-wrap">John Doe :</p>
-                                                <p class="font-weight-medium mr-1 mb-0">[#23246]</p>
-                                                <p class="font-weight-semibold mb-0 ellipsis">Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</p>
-                                            </div>
-                                            <p class="text-small text-gray mb-2">Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Lorem ipsum dolor sit amet.</p>
-                                            <div class="row text-gray d-md-flex d-none">
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted">Last responded :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted">3 hours ago</p>
-                                                </div>
-                                                <div class="col-4 d-flex">
-                                                    <p class="mb-0 mr-2 text-muted">Due in :</p>
-                                                    <p class="Last-responded mr-2 mb-0 text-muted">2 Days</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ticket-actions col-md-2">
-                                            <div class="btn-group dropdown">
-                                                <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Manage
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-reply fa-fw"></i>Quick reply</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-history fa-fw"></i>Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-check text-success fa-fw"></i>Resolve Issue</a>
-                                                    <a class="dropdown-item" href="#"><i class="fa fa-times text-danger fa-fw"></i>Close Issue</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="card-header">
+                                Featured
+                            </div>
+                            <div class="card-body" th:each = "entry : ${listEntry}">
+                                <h5 class="card-title" th:text="${entry.title}"></h5>
+                                <p class="card-text" th:text="${entry.text}"></p>
+
+                                <a href="#" class="btn_edit_entry btn btn-primary"  data-toggle="modal" data-target="#editEntryModal" th:data="${entry.id}">Edit</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Example file input</label>
+                            <input type="file" th:name="file" class="form-control-file" id="exampleFormControlFile1">
+                            <label>Name offer</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+                </div>
+
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
@@ -734,6 +640,263 @@
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
+</div>
+<!--Modal edit entry-->
+<div class="modal fade" id="editEntryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title entryTitle" id="editEntryModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditEntry" class="formEntryEdit">
+                    <div class="form-group">
+                        <input class="id form-control"
+                               name="id"
+                               readonly hidden>
+                </form>
+                        <label for="message-text" class="col-form-label">Edit text :</label>
+                        <textarea class="form-control entryTextarea" id="message-text" ></textarea>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="editEntrySubmit">edit entry</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal edit-->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelEdit" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelEdit">Edit user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form  method="post" th:action="@{/admin/edit}" class="edit form-signin pt-md-1" >
+                    <div class="row">
+
+                        <div class="mx-auto">
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    ID</p>
+                                <input class="id form-control"
+                                       name="id"
+                                       readonly>
+                            </div>
+
+
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    First name</p>
+                                <input
+                                        type="text"
+                                        class="name form-control"
+                                        name="name"
+                                        autofocus="autofocus"
+                                        placeholder="First name"
+                                        required
+
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Last name</p>
+                                <input
+                                        type="text"
+                                        class="lastName form-control"
+                                        name="lastName"
+                                        autofocus="autofocus"
+                                        placeholder="Last name"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Age</p>
+                                <input
+                                        type="text"
+                                        class="age form-control"
+                                        name="age"
+                                        autofocus="autofocus"
+                                        placeholder="Age"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Email</p>
+                                <input
+                                        type="email"
+                                        class="email form-control"
+                                        name="email"
+                                        autofocus="autofocus"
+                                        placeholder="Email"
+                                        required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Password</p>
+                                <input
+                                        type="text"
+                                        class="password form-control"
+                                        name="password"
+                                        autofocus="autofocus"
+                                        placeholder="Password"
+                                        required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <p class="text-center font-weight-bolder p-0 mb-1 mt-1">
+                                    Role</p>
+                                <select th:name="checkboxRole" multiple
+                                        class="roles form-control"
+                                        id="exampleFormControlSelect3"
+                                        style="height: 60px">
+
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary mx-2" id="editSubmit">Edit</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal delete-->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal1Label">Delete User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="get" th:action="@{/admin/delete/{id}(id = ${user.id})}" class="form-signin pt-md-1" >
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="buttonAfterDelete btn btn-danger ml-2" id="buttonDelete">Delete</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" th:action="@{/admin/add}" class="add form-signin pt-md-5 mx-auto">
+
+                    <input type="hidden" th:name="id" th:value="${user.id}">
+
+
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">First name</p>
+                        <input
+                                type="text"
+                                class="form-control bg-warning"
+                                th:name="name"
+                                autofocus="autofocus"
+                                placeholder="First name"
+                                required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Last name</p>
+                        <input
+                                type="text"
+                                class="form-control bg-warning"
+                                th:name="lastName"
+                                autofocus="autofocus"
+                                placeholder="Last name"
+                                required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Age</p>
+                        <input
+                                type="text"
+                                class="form-control"
+                                th:name="age"
+                                autofocus="autofocus"
+                                placeholder="Age"
+                                required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Email</p>
+                        <input
+                                type="email"
+                                class="form-control bg-warning"
+                                th:name="email"
+                                autofocus="autofocus"
+                                placeholder="Email"
+                                required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Password</p>
+                        <input
+                                type="text"
+                                class="form-control"
+                                th:name="password"
+                                autofocus="autofocus"
+                                placeholder="Password"
+                                required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <p class="text-center font-weight-bolder p-0 mb-1 mt-1">Role</p>
+                        <select  th:name="checkboxRole"  multiple class="roles form-control" id="exampleFormControlSelect2" style="height: 60px" >
+                            <!--                                                <option th:each="role : ${listRoles}"  th:value="${role.name}" th:text="${role.name}"></option>-->
+
+                        </select>
+                    </div>
+
+<!--                    <button type="button" class="buttonAddUser btn btn-lg btn-success btn-block mb-3 mt-1 mx-auto" style="width: 200px">Add new user</button>-->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="buttonAddUser btn btn-success">Add new user</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- container-scroller -->
 
@@ -759,6 +922,10 @@
 <!-- Custom js for this page-->
 <script th:src="@{adminjs/dashboard.js}"></script>
 <!-- End custom js for this page-->
+<script th:src="@{adminjs/custom_js_json.js}"></script>
+<script th:src="@{adminjs/entryMainPage.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.0/js/bootstrap.js"  crossorigin="anonymous"></script>
 </body>
 
 
